@@ -1,5 +1,3 @@
-/* reset */
-
 *{
     margin:0;
     padding:0;
@@ -1520,8 +1518,7 @@ header.scrolled .menu-btn span{
     transition:.3s;
 }
 
-.order-form input{
-
+.order-form input {
     height:48px;
 }
 
@@ -1538,10 +1535,115 @@ header.scrolled .menu-btn span{
     border-color:#8a766593;
 }
 
+/* ===========================
+드롭다운
+=========================== */
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-btn{
+    width:100%;
+    height:48px;
+
+    padding:0 16px;
+
+    border:1px solid #E5E5E5;
+    border-radius:10px;
+
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    font-size:16px;
+    color: #828282;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.dropdown-btn:hover{
+    border-color:#8a7665;
+}
+
+.dropdown-btn::after{
+    content:"";
+
+    width:10px;
+    height:10px;
+
+    border-right:2px solid #8a7665;
+    border-bottom:2px solid #8a7665;
+
+    transform:rotate(45deg);
+    transition:.3s;
+}
+
+.dropdown.is-open .dropdown-btn{
+    border-color:#8a7665;
+}
+
+.dropdown.is-open .dropdown-btn::after{
+    transform:rotate(-135deg);
+    margin-top:6px;
+}
+
+/* 메뉴 */
+
+.dropdown-list{
+    position:absolute;
+
+    top:56px;
+    left:0;
+
+    width:100%;
+
+    background:#fff;
+
+    border:1px solid #E5E5E5;
+    border-radius:10px;
+
+    overflow:hidden;
+
+    max-height:0;
+
+    opacity:0;
+
+    transition:
+        max-height .35s ease,
+        opacity .25s ease;
+
+    z-index:30;
+}
+
+.dropdown.is-open .dropdown-list{
+    max-height:220px;
+    opacity:1;
+}
+
+.dropdown-list li{
+    padding:15px 16px;
+
+    color:#828282;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.dropdown-list li:hover{
+
+    background:#F7F1E8;
+    color:#8a7665;
+}
+
 /* 버튼 */
 
 .btn-submit{
-
     width:140px;
     height:52px;
 
@@ -1562,6 +1664,199 @@ header.scrolled .menu-btn span{
 
 .btn-submit:hover{
     background:#725e4c;
+}
+
+/* 팝업창 */
+
+.modal{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.35);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.35s;
+
+    z-index:999;
+}
+
+.modal.show{
+
+    opacity:1;
+    visibility:visible;
+}
+
+.modal-box{
+
+    width:360px;
+
+    padding:40px;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    text-align:center;
+}
+
+.modal-icon{
+
+    width:64px;
+    height:64px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    background:#8a7665;
+
+    color:#fff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:30px;
+}
+
+.modal-box h3{
+
+    font-size:24px;
+
+    margin-bottom:16px;
+}
+
+.modal-box p{
+
+    color:#81847F;
+
+    line-height:1.7;
+
+    margin-bottom:28px;
+}
+
+.modal-box button{
+
+    width:100%;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:#8a7665;
+
+    color:#fff;
+
+    cursor:pointer;
+}
+
+/* =========================
+팝업창 테블릿 (1280)
+========================= */
+
+@media (max-width:1280px){
+
+    .modal-box{
+
+        width:340px;
+
+        padding:36px 32px;
+    }
+
+    .modal-icon{
+
+        width:58px;
+        height:58px;
+
+        font-size:28px;
+
+        margin-bottom:18px;
+    }
+
+    .modal-box h3{
+
+        font-size:22px;
+    }
+
+    .modal-box p{
+
+        font-size:15px;
+
+        margin-bottom:24px;
+    }
+
+    .modal-box button{
+
+        height:46px;
+
+        font-size:15px;
+    }
+
+}
+
+/* =========================
+팝업창 모바일 (768)
+========================= */
+
+@media (max-width:768px){
+
+    .modal{
+
+        padding:20px;
+    }
+
+    .modal-box{
+
+        width:100%;
+        max-width:320px;
+
+        padding:32px 24px;
+
+        border-radius:18px;
+    }
+
+    .modal-icon{
+
+        width:54px;
+        height:54px;
+
+        font-size:24px;
+
+        margin-bottom:16px;
+    }
+
+    .modal-box h3{
+
+        font-size:20px;
+
+        margin-bottom:14px;
+    }
+
+    .modal-box p{
+
+        font-size:14px;
+        line-height:1.7;
+
+        margin-bottom:22px;
+    }
+
+    .modal-box button{
+
+        width:100%;
+        height:48px;
+
+        font-size:15px;
+    }
+
 }
 
 /* =========================
@@ -1610,7 +1905,8 @@ header.scrolled .menu-btn span{
     }
 
     .order-form input,
-    .order-form textarea{
+    .order-form textarea,
+    .dropdown-btn{
         font-size:15px;
     }
 
@@ -1618,6 +1914,25 @@ header.scrolled .menu-btn span{
         height:120px;
     }
 
+}
+
+.dropdown-list li{
+    font-size:15px;
+}
+
+.dropdown-btn{
+    height:46px;
+    padding:0 14px;
+}
+
+.dropdown-list li{
+    padding:14px;
+}
+
+.dropdown-btn::after{
+
+    width:8px;
+    height:8px;
 }
 
 /* =========================
@@ -1678,7 +1993,8 @@ header.scrolled .menu-btn span{
     }
 
     .order-form input,
-    .order-form textarea{
+    .order-form textarea,
+    .dropdown-btn {
         font-size:15px;
     }
 
@@ -1692,6 +2008,26 @@ header.scrolled .menu-btn span{
         margin-top:16px;
     }
 
+}
+
+.dropdown-btn{
+    height:48px;
+    padding:0 16px;
+}
+
+.dropdown-list{
+    top:54px;
+}
+
+.dropdown-list li{
+    padding:14px 16px;
+    font-size:15px;
+}
+
+.dropdown-btn::after{
+
+    width:7px;
+    height:7px;
 }
 
 /* =========================
