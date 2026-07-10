@@ -36,7 +36,7 @@
                 <ul class="gnb">
                     <li><a href="#service">서비스</a></li>
                     <li><a href="#process">이용방법</a></li>
-                    <li><a href="#order">주문제작</a></li>
+                    <li><a href="#order">문의하기</a></li>
                     <li><a href="#gallery">갤러리</a></li>
                 </ul>
             </nav>
@@ -54,7 +54,7 @@
             <ul>
                 <li><a href="#service">서비스</a></li>
                         <li><a href="#process">이용방법</a></li>
-                        <li><a href="#order">주문제작</a></li>
+                        <li><a href="#order">문의하기</a></li>
                         <li><a href="#gallery">갤러리</a></li>
 
                 <li class="register">
@@ -317,7 +317,7 @@
 
         <div class="order-title">
 
-            <h2>주문제작 꽃다발</h2>
+            <h2>Bloom Moment와 함께하기</h2>
 
             <div class="title-line"></div>
 
@@ -338,19 +338,32 @@
             <!-- 문의폼 -->
             <div class="order-form">
 
-                <h3>기념일 리마인드</h3>
+                <!-- <h3>기념일 리마인드</h3> -->
 
                 <form>
                     <div class="form-row">
                         <input type="text" placeholder="이름">
-                        <input type="email" placeholder="이메일">
+                        <input type="contact" placeholder="연락처">
                     </div>
 
-                    <input type="text" placeholder="원하는 꽃 종류">
-                    <input type="text" placeholder="컬러 팔레트">
-                    <textarea placeholder="예산 전하고 싶은 마음"></textarea>
-                    <button type="#" class="btn-submit">
-                        문의 보내기
+                    <div class="dropdown">
+
+                        <button type="button" class="dropdown-btn">
+                            <span>문의 유형</span>
+                        </button>
+
+                        <ul class="dropdown-list">
+                            <li data-value="">기념일 리마인드</li>
+                            <li data-value="맞춤 꽃 추천">맞춤 꽃 추천</li>
+                            <li data-value="주문제작 꽃다발">주문제작 꽃다발</li>
+                        </ul>
+
+                        <input type="hidden" name="type">
+                    </div>
+                    <input type="text" placeholder="원하는 분위기 또는 컬러">
+                    <textarea id="message" placeholder="문의내용"></textarea>
+                    <button type="submit" class="btn-submit">
+                    문의 보내기
                     </button>
                 </form>
 
@@ -470,6 +483,20 @@
     </div>
 </footer>
 
+    <div class="modal" id="successModal">
+        <div class="modal-box">
+            <div class="modal-icon">✓</div>
+
+            <h3>문의가 접수되었습니다.</h3>
+
+            <p>
+                확인 후 빠르게 연락드리겠습니다!
+            </p>
+
+            <button id="closeModal">확인</button>
+        </div>
+    </div>
+
 <script>
 AOS.init({
     duration: 1000,
@@ -530,7 +557,83 @@ mobileLinks.forEach(link=>{
     });
 
 });
+
+// 문의유형
+
+const dropdown = document.querySelector(".dropdown");
+const dropdownBtn = document.querySelector(".dropdown-btn");
+const dropdownList = document.querySelector(".dropdown-list");
+const dropdownItems = document.querySelectorAll(".dropdown-list li");
+const hiddenInput = document.querySelector('input[name="type"]');
+
+dropdownBtn.addEventListener("click", () => {
+    dropdown.classList.toggle("is-open");
+});
+
+dropdownItems.forEach(item => {
+    item.addEventListener("click", () => {
+
+        const text = item.textContent;
+
+        dropdownBtn.querySelector("span").textContent = text;
+        hiddenInput.value = text;
+
+        if(text === "기념일 리마인드"){
+            message.placeholder =
+            "등록하고 싶은 기념일과 날짜를 알려주세요.";
+        }
+
+        else if(text === "맞춤 꽃 추천"){
+            message.placeholder =
+            "받는 분의 취향, 분위기를 알려주세요.";
+        }
+
+        else if(text === "주문제작 꽃다발"){
+            message.placeholder =
+            "예산과 원하는 꽃, 전달하고 싶은 마음을 알려주세요.";
+        }
+
+        // ⭐ 선택하면 자동으로 닫기
+        dropdown.classList.remove("is-open");
+
+    });
+});
+
+document.addEventListener("click",(e)=>{
+
+    if(!dropdown.contains(e.target)){
+
+        dropdown.classList.remove("is-open");
+    }
+
+});
+
+// 팝업창
+
+const form = document.querySelector(".order-form form");
+const modal = document.getElementById("successModal");
+const closeBtn = document.getElementById("closeModal");
+
+form.addEventListener("submit",(e)=>{
+
+    e.preventDefault();
+
+    modal.classList.add("show");
+
+    form.reset();
+
+    dropdownBtn.querySelector("span").textContent="문의 유형";
+});
+
+closeBtn.addEventListener("click",()=>{
+
+    modal.classList.remove("show");
+
+});
+
 </script>
+
+
 
 </body>
 </html>
