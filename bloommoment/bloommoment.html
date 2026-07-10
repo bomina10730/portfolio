@@ -498,7 +498,10 @@
     </div>
 
 <script>
-AOS.init({
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+    AOS.init({
     duration: 1000,
     delay: 200
 });
@@ -565,6 +568,7 @@ const dropdownBtn = document.querySelector(".dropdown-btn");
 const dropdownList = document.querySelector(".dropdown-list");
 const dropdownItems = document.querySelectorAll(".dropdown-list li");
 const hiddenInput = document.querySelector('input[name="type"]');
+const message = document.getElementById("message");
 
 dropdownBtn.addEventListener("click", () => {
     dropdown.classList.toggle("is-open");
@@ -631,9 +635,9 @@ closeBtn.addEventListener("click",()=>{
 
 });
 
+});
+
 </script>
-
-
 
 </body>
 </html>
