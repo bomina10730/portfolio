@@ -490,7 +490,7 @@ header.scrolled .menu-btn span{
     height:100%;
     object-fit:cover;
 
-    animation:heroZoom 8s linear;
+    animation: heroZoom 5s ease-out forwards;
 }
 
 .hero-bg img{
