@@ -1704,6 +1704,10 @@ header.scrolled .menu-btn span{
     border-radius:20px;
 
     text-align:center;
+
+    transform:scale(.9);
+
+    transition:.35s ease;
 }
 
 .modal-icon{
@@ -1757,6 +1761,11 @@ header.scrolled .menu-btn span{
     color:#fff;
 
     cursor:pointer;
+}
+
+.modal.show .modal-box{
+
+    transform:scale(1);
 }
 
 /* =========================
@@ -1822,10 +1831,6 @@ header.scrolled .menu-btn span{
         padding:32px 24px;
 
         border-radius:18px;
-
-        transform:scale(.9);
-
-        transition:.35s ease;
     }
 
     .modal-icon{
@@ -1861,12 +1866,8 @@ header.scrolled .menu-btn span{
         font-size:15px;
     }
 
-    .modal.show .modal-box{
-
-    transform:scale(1);
 }
 
-}
 
 /* =========================
 테블릿 (1280)
