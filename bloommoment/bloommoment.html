@@ -53,9 +53,9 @@
         <div class="mobile-menu">
             <ul>
                 <li><a href="#service">서비스</a></li>
-                        <li><a href="#process">이용방법</a></li>
-                        <li><a href="#order">문의하기</a></li>
-                        <li><a href="#gallery">갤러리</a></li>
+                <li><a href="#process">이용방법</a></li>
+                <li><a href="#order">문의하기</a></li>
+                <li><a href="#gallery">갤러리</a></li>
 
                 <li class="register">
                     <a href="#order">
@@ -75,7 +75,7 @@
 
     <main>
 
-        <section class="hero">
+        <section class="hero" id="hero">
 
             <div class="hero-bg">
 
@@ -91,9 +91,16 @@
                     <img src="../bloommoment/img/main3.png" alt="">
                 </div>
 
+                
+
             </div>
 
             <div class="hero-overlay"></div>
+                <div class="hero-pagination">
+                    <span class="active"></span>
+                    <span></span>
+                    <span></span>
+                </div>
 
             <div class="hero-inner">
 
@@ -121,7 +128,7 @@
         </section>
 
 <!-- 브랜드 -->
-    <section class="brand">
+    <section class="brand" id="brand">
 
     <div class="brand-inner" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="300">
 
@@ -507,7 +514,43 @@
 
     document.addEventListener("DOMContentLoaded", () => {
 
-    
+// 네비
+
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".gnb a");
+
+window.addEventListener("scroll", () => {
+
+    let currentSection = "";
+
+    sections.forEach(section => {
+
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.offsetHeight;
+
+        if (
+            window.scrollY >= sectionTop &&
+            window.scrollY < sectionTop + sectionHeight
+        ) {
+            currentSection = section.id;
+        }
+
+    });
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        if(link.getAttribute("href") === "#" + currentSection){
+            link.classList.add("active");
+        }
+
+    });
+
+});
+
+// 히어로
+
 const header = document.querySelector("header");
 const hero = document.querySelector(".hero");
 
@@ -538,6 +581,51 @@ setInterval(()=>{
     slides[current].classList.add("active");
 
 },5000);
+
+// 인디케이터
+
+// 누르면 이동
+const bullets = document.querySelectorAll(".hero-pagination span");
+
+function showSlide(index){
+
+    slides.forEach(slide => slide.classList.remove("active"));
+    bullets.forEach(bullet => bullet.classList.remove("active"));
+
+    current = index;
+
+    slides[current].classList.add("active");
+    bullets[current].classList.add("active");
+}
+
+// 자동 재생
+let slideTimer = setInterval(() => {
+
+    let next = (current + 1) % slides.length;
+    showSlide(next);
+
+}, 5000);
+
+// 동그라미 클릭
+bullets.forEach((bullet, index) => {
+
+    bullet.addEventListener("click", () => {
+
+        clearInterval(slideTimer);
+
+        showSlide(index);
+
+        // 다시 자동재생 시작
+        slideTimer = setInterval(() => {
+
+            let next = (current + 1) % slides.length;
+            showSlide(next);
+
+        }, 5000);
+
+    });
+
+});
 
 // 햄버거
 
