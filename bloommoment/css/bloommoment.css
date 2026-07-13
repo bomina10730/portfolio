@@ -1256,8 +1256,6 @@ header.scrolled ~ .hero .hero-pagination span.active{
 .process-list{
     display:flex;
     flex-direction:column;
-
-    gap:10px;
 }
 
 .process-item{
@@ -1320,20 +1318,16 @@ header.scrolled ~ .hero .hero-pagination span.active{
 
 /* 효과 */
 
-/* 처음에는 숨김 */
-
 .process-item{
 
     opacity:0;
 
-    transform:translateY(50px);
+    transform:translateY(80px);
 
     transition:
-        opacity .8s ease,
-        transform .8s ease;
+        opacity 1.3s ease,
+        transform 1.3s cubic-bezier(.16,1,.3,1);
 }
-
-/* 화면에 들어오면 */
 
 .process-item.show{
 
@@ -2145,6 +2139,7 @@ header.scrolled ~ .hero .hero-pagination span.active{
 }
 
 .gallery-track{
+
     display:flex;
     gap:20px;
 
@@ -2154,7 +2149,16 @@ header.scrolled ~ .hero .hero-pagination span.active{
 
     will-change:transform;
     transform:translateZ(0);
+
 }
+
+.gallery-track.pause{
+
+    animation-play-state:paused;
+
+}
+
+
 
 .gallery-group{
     display:flex;
@@ -2189,6 +2193,187 @@ header.scrolled ~ .hero .hero-pagination span.active{
     border-radius:20px;
 
     display:block;
+}
+
+/* ===========================
+갤러리 모달
+=========================== */
+
+.gallery-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.45);
+    backdrop-filter:blur(10px);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.35s ease;
+
+    z-index:9999;
+}
+
+.gallery-modal.show{
+
+    opacity:1;
+    visibility:visible;
+}
+
+/* 모달 박스 */
+.gallery-modal-box{
+
+    position:relative;
+
+    width:100%;
+    max-width:460px;
+
+    background:#fff;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    transform:translateY(30px);
+
+    transition:.4s ease;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.18);
+}
+
+.gallery-modal.show .gallery-modal-box{
+
+    transform:translateY(0);
+}
+
+/* 사진 */
+.gallery-modal-img{
+
+    width:100%;
+    height:460px;
+
+    overflow:hidden;
+}
+
+.gallery-modal-img img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+/* 정보 */
+.gallery-modal-info{
+
+    padding:28px;
+}
+
+.gallery-modal-info h3{
+
+    font-size:26px;
+    font-weight:600;
+
+    color:#222;
+
+    margin-bottom:10px;
+
+    /* font-family:"Cormorant Garamond", serif; */
+}
+
+.gallery-modal-info>#modalShop{
+
+    display:block;
+
+    font-size:14px;
+
+    letter-spacing:.08em;
+
+    color:#8A7665;
+
+    margin-bottom:20px;
+}
+
+/* 태그 */
+.modal-tag{
+
+    display:flex;
+    gap:10px;
+
+    margin-bottom:20px;
+
+    flex-wrap:wrap;
+}
+
+.modal-tag span{
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    background:#F7F1E8;
+
+    color:#8A7665;
+
+    font-size:13px;
+    font-weight:600;
+}
+
+/* 설명 */
+.gallery-modal-info p{
+
+    font-size:15px;
+
+    line-height:1.8;
+
+    color:#666;
+}
+
+/* 닫기 버튼 */
+.gallery-close{
+
+    position:absolute;
+
+    top:18px;
+    right:18px;
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.92);
+
+    color:#8A7665;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    z-index:10;
+}
+
+.gallery-close:hover{
+
+    background:#8A7665;
+
+    color:#fff;
+
+    transform:rotate(90deg);
 }
 
 /* 애니메이션 */
@@ -2256,7 +2441,41 @@ header.scrolled ~ .hero .hero-pagination span.active{
         padding-top:40px;
     }
 
+    .gallery-modal-box{
+
+        max-width:420px;
+    }
+
+    .gallery-modal-img{
+
+        height:400px;
+    }
+
+    .gallery-modal-info{
+
+        padding:24px;
+    }
+
+    .gallery-modal-info h3{
+
+        font-size:24px;
+    }
+
+    .gallery-modal-info p{
+
+        font-size:14px;
+    }
+
+    .gallery-close{
+
+        width:38px;
+        height:38px;
+
+        font-size:24px;
+    }
+
 }
+
 
 .gallery-track{
         animation-duration:35s;
@@ -2279,7 +2498,7 @@ header.scrolled ~ .hero .hero-pagination span.active{
 
     .gallery-track{
         gap:16px;
-        animation-duration:18s;
+        animation-duration:30s;
     }
 
     .gallery-item{
@@ -2295,15 +2514,75 @@ header.scrolled ~ .hero .hero-pagination span.active{
     .gallery-item.down{
         padding-top:28px;
     }
-}
 
-.gallery-track{
-        animation-duration:30s;
+    .gallery::before,
+    .gallery::after{
+        width:60px;
     }
 
-.gallery::before,
-.gallery::after{
-    width:60px;
+    .gallery-modal{
+    padding:20px;
+}
+
+.gallery-modal-box{
+
+    width:100%;
+    max-width:320px;
+
+    border-radius:18px;
+}
+
+.gallery-modal-img{
+
+    height:300px;
+}
+
+.gallery-modal-info{
+
+    padding:22px;
+}
+
+.gallery-modal-info h3{
+
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.gallery-modal-info>#modalShop{
+
+    font-size:13px;
+    margin-bottom:16px;
+}
+
+.modal-tag{
+
+    gap:8px;
+    margin-bottom:16px;
+}
+
+.modal-tag span{
+
+    padding:6px 12px;
+    font-size:12px;
+}
+
+.gallery-modal-info p{
+
+    font-size:14px;
+    line-height:1.7;
+}
+
+.gallery-close{
+
+    top:14px;
+    right:14px;
+
+    width:36px;
+    height:36px;
+
+    font-size:22px;
+}
+
 }
 
 /* =========================
