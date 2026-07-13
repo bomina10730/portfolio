@@ -38,7 +38,7 @@ body{
     --color-black:#3D403B;
     --color-white:#F7F1E8;
     --color-gray: #7D7D78;
-    --color-olive:#535A3B;
+    --color-brown:#8A7665;
 }
 
 .inner{
@@ -126,12 +126,6 @@ header.scrolled .gnb a::after{
     background:rgba(180, 150, 124, 0.514);
 }
 
-.gnb a:hover::after,
-.gnb a.active::after{
-
-    width:70%;
-}
-
 .gnb a::after{
 
     content:"";
@@ -146,14 +140,22 @@ header.scrolled .gnb a::after{
     width:0;
     height:2px;
 
-    background:rgba(247, 241, 232, 0.61);
+    background:rgba(247,241,232,.6);
 
     transition:.35s ease;
 }
 
 .gnb a:hover::after,
 .gnb a.active::after{
+
     width:70%;
+}
+
+/* 히어로 아래에서는 밑줄 색 변경 */
+
+header.scrolled .gnb a::after{
+
+    background:rgba(180,150,124,.7);
 }
 
 /* 버튼 */
@@ -170,9 +172,6 @@ header.scrolled .gnb a::after{
 
     border-radius:999px;
 
-    background:var(--color-white);
-    color:#8a7665;
-
     font-size:14px;
     font-weight:600;
 
@@ -182,14 +181,25 @@ header.scrolled .gnb a::after{
 }
 
 .btn-register{
-    background:var(--color-white);
-    color:#8a7665;
-    border: 2px solid rgba(138,118,101,.2);
+    background:transparent;
+    color:#F7F5F0;
+    border: 1px solid var(--color-white);
 }
 
 .btn-register:hover{
-    background:var(--color-white);
-    border-color:#8a7665;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.30);
+}
+
+header.scrolled .btn-register{
+
+    background:#8A7665;
+    color:var(--color-white);
+    border:1px solid #8A7665;
+}
+
+header.scrolled .btn-register:hover{
+    background:#725E4C;
+    border-color:#725E4C;
 }
 
 /* 햄버거 */
@@ -531,6 +541,7 @@ header.scrolled .menu-btn span{
     line-height:1.7;
 }
 
+
 .btn{
 
     display:inline-flex;
@@ -543,9 +554,10 @@ header.scrolled .menu-btn span{
 
     border-radius:999px;
 
-    background:#8a7665;
+    background:transparent;
+    border: 1px solid var(--color-white);
 
-    color:var(--color-white);
+    color:#F7F5F0;
 
     transition:.3s;
 
@@ -553,7 +565,7 @@ header.scrolled .menu-btn span{
 }
 
 .btn:hover{
-    background:#725e4c;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.30);
 }
 
 /* 테블릿 버전 */
@@ -711,15 +723,14 @@ header.scrolled .menu-btn span{
     font-size:16px;
     font-weight:500;
     line-height:1.9;
-    color:var(--color-gray);
 }
 
 .brand-message{
     font-size:16px;
     line-height:1.9;
     font-weight:500;
-    color:#535A3B;
 }
+
 
 .btn-more{
 
@@ -730,13 +741,14 @@ header.scrolled .menu-btn span{
     width:140px;
     height:48px;
 
-    margin-top:16px;
+    margin-top:3em;
 
     border-radius:999px;
 
-    background:#97A68F;
+    background:transparent;
+    border: 1px solid var(--color-brown);
+    color:var(var(--color-brown));
 
-    color:var(--color-white);
 
     font-size:15px;
     font-weight:600;
@@ -745,8 +757,7 @@ header.scrolled .menu-btn span{
 }
 
 .btn-more:hover{
-
-    background:#697464;
+    box-shadow: 0 0 10px rgba(83,90,59,.35);
 }
 
 /* =========================
@@ -909,8 +920,6 @@ header.scrolled .menu-btn span{
 
     font-size:16px;
     line-height:1.8;
-
-    color:#81847F;
 }
 
 /* 리스트 */
@@ -997,8 +1006,7 @@ header.scrolled .menu-btn span{
 
     font-size:16px;
     line-height:1.8;
-
-    color:#81847F;
+    color:var(--color-gray);
 }
 
 /* =========================
@@ -1421,7 +1429,7 @@ header.scrolled .menu-btn span{
     font-size:18px;
     line-height:1.8;
 
-    color:#81847F;
+    color: var(--color-gray);
 }
 
 /* 콘텐츠 */
@@ -1641,6 +1649,8 @@ header.scrolled .menu-btn span{
     color:#8a7665;
 }
 
+
+
 /* 버튼 */
 
 .btn-submit{
@@ -1650,9 +1660,9 @@ header.scrolled .menu-btn span{
     border:none;
     border-radius:999px;
 
-    background:#8a7665;
-
-    color:var(--color-white);
+    background:var(--color-brown);
+    color:#ffffff;
+    border: 1px solid var(--color-brown);
 
     font-size:16px;
     font-weight:600;
@@ -1663,7 +1673,8 @@ header.scrolled .menu-btn span{
 }
 
 .btn-submit:hover{
-    background:#725e4c;
+    box-shadow: 0 0 10px rgba(0,0,0,.35);
+    border-color: rgba(255,255,255,0.1);
 }
 
 /* 팝업창 */
@@ -2223,7 +2234,7 @@ header.scrolled .menu-btn span{
 
     padding:80px 20px 40px;
 
-    background:#898d7b;
+    background:var(--color-brown);
 }
 
 .footer-inner{
