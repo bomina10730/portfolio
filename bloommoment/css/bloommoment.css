@@ -523,6 +523,65 @@ header.scrolled .menu-btn span{
 );
 }
 
+/* 인디케이터 */
+
+.hero-pagination{
+
+    position:absolute;
+
+    left:50%;
+    bottom:40px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+    gap:8px;
+
+    z-index:10;
+}
+
+.hero-pagination span{
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.35);
+
+    cursor:pointer;
+
+    transition:.35s ease;
+}
+
+.hero-pagination span.active{
+
+    background:#fff;
+
+    transform:scale(1.15);
+}
+
+/* 히어로 아래에서 색 변경 */
+
+header.scrolled ~ .hero .hero-pagination span.active{
+    background:#8A7665;
+}
+
+.hero-slide{
+
+    position:absolute;
+    inset:0;
+
+    opacity:0;
+
+    transition:opacity 1.2s ease;
+}
+
+.hero-slide.active{
+
+    opacity:1;
+}
+
 .txt-box{
     max-width:650px;
     color:var(--color-white);
@@ -1156,8 +1215,6 @@ header.scrolled .menu-btn span{
 
 }
 
-/* 왼쪽 */
-
 .process-title{
 
     width:764px;
@@ -1196,12 +1253,11 @@ header.scrolled .menu-btn span{
 
 }
 
-/* 오른쪽 */
-
 .process-list{
+    display:flex;
+    flex-direction:column;
 
-    width:764px;
-
+    gap:10px;
 }
 
 .process-item{
@@ -1260,6 +1316,30 @@ header.scrolled .menu-btn span{
 
     color:var(--color-gray);
 
+}
+
+/* 효과 */
+
+/* 처음에는 숨김 */
+
+.process-item{
+
+    opacity:0;
+
+    transform:translateY(50px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+/* 화면에 들어오면 */
+
+.process-item.show{
+
+    opacity:1;
+
+    transform:translateY(0);
 }
 
 /* =========================
