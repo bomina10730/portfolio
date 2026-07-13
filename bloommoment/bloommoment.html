@@ -91,16 +91,9 @@
                     <img src="../bloommoment/img/main3.png" alt="">
                 </div>
 
-                
-
             </div>
 
             <div class="hero-overlay"></div>
-                <div class="hero-pagination">
-                    <span class="active"></span>
-                    <span></span>
-                    <span></span>
-                </div>
 
             <div class="hero-inner">
 
@@ -124,6 +117,8 @@
                 </div>
 
             </div>
+
+            <div class="hero-pagination"></div>
 
         </section>
 
@@ -252,7 +247,6 @@
 
     <div class="process-inner">
 
-        <!-- 왼쪽 -->
         <div class="process-title">
 
             <h2>
@@ -269,7 +263,6 @@
 
         </div>
 
-        <!-- 오른쪽 -->
         <div class="process-list">
 
             <div class="process-item">
@@ -286,6 +279,7 @@
 
             </div>
 
+        <!-- 프로세스 -->
             <div class="process-item">
 
                 <span class="num">02</span>
@@ -504,7 +498,6 @@
         </div>
     </div>
 
-
 <script>
 
     AOS.init({
@@ -564,68 +557,60 @@ window.addEventListener("scroll", () => {
 
 });
 
-const slides = document.querySelectorAll(".hero-slide");
-
-let current = 0;
-
-setInterval(()=>{
-
-    slides[current].classList.remove("active");
-
-    current++;
-
-    if(current >= slides.length){
-        current = 0;
-    }
-
-    slides[current].classList.add("active");
-
-},5000);
-
 // 인디케이터
 
-// 누르면 이동
-const bullets = document.querySelectorAll(".hero-pagination span");
+const slides = document.querySelectorAll(".hero-slide");
+const pagination = document.querySelector(".hero-pagination");
+
+let current = 0;
+let slideTimer;
 
 function showSlide(index){
 
     slides.forEach(slide => slide.classList.remove("active"));
-    bullets.forEach(bullet => bullet.classList.remove("active"));
+
+    document.querySelectorAll(".hero-pagination span")
+        .forEach(dot => dot.classList.remove("active"));
+
+    slides[index].classList.add("active");
+    pagination.children[index].classList.add("active");
 
     current = index;
-
-    slides[current].classList.add("active");
-    bullets[current].classList.add("active");
 }
 
-// 자동 재생
-let slideTimer = setInterval(() => {
+slides.forEach((_, index) => {
 
-    let next = (current + 1) % slides.length;
-    showSlide(next);
+    const dot = document.createElement("span");
 
-}, 5000);
+    if(index === 0){
+        dot.classList.add("active");
+    }
 
-// 동그라미 클릭
-bullets.forEach((bullet, index) => {
-
-    bullet.addEventListener("click", () => {
+    dot.addEventListener("click", () => {
 
         clearInterval(slideTimer);
 
         showSlide(index);
 
-        // 다시 자동재생 시작
-        slideTimer = setInterval(() => {
-
-            let next = (current + 1) % slides.length;
-            showSlide(next);
-
-        }, 5000);
+        startSlide();
 
     });
 
+    pagination.appendChild(dot);
+
 });
+
+function startSlide(){
+
+    slideTimer = setInterval(() => {
+
+        showSlide((current + 1) % slides.length);
+
+    }, 5000);
+
+}
+
+startSlide();
 
 // 햄버거
 
@@ -650,6 +635,30 @@ mobileLinks.forEach(link=>{
 
     });
 
+});
+
+// 효과
+
+const processItems = document.querySelectorAll(".process-item");
+
+const processObserver = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("show");
+
+        }
+
+    });
+
+},{
+    threshold:0.3
+});
+
+processItems.forEach(item => {
+    processObserver.observe(item);
 });
 
 // 문의유형
