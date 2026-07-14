@@ -2774,8 +2774,9 @@ Gallery Hover
 
         background:linear-gradient(
             to top,
-            rgba(0,0,0,.45),
-            rgba(0,0,0,0)
+            rgba(125, 109, 97, .65),
+            rgba(125, 109, 97, .15),
+            rgba(125, 109, 97, 0)
         );
     }
 
