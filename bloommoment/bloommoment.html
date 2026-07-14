@@ -125,36 +125,73 @@
 <!-- 브랜드 -->
     <section class="brand" id="brand">
 
-    <div class="brand-inner" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="300">
+    <div class="brand-inner" data-aos="fade-up">
 
-        <div class="brand-logo">
-            <img src="../bloommoment/img/Frame 62.png" alt="Bloom Moment">
-        </div>
+        <span class="brand-label">
+            BLOOM MOMENT
+        </span>
 
-        <div class="brand-content">
+        <h2>
+            Every Flower<br>
+            Holds a Memory
+        </h2>
+
+        <p class="brand-desc">
+            Bloom Moment는 소중한 사람을 위한 순간을
+            조금 더 따뜻하게 기억할 수 있도록 만들어졌습니다.
+            기념일 알림부터 맞춤 꽃 추천, 주문 제작 꽃다발까지
+            당신의 마음이 가장 아름답게 전해질 수 있도록 함께합니다.
+        </p>
+
+        <a href="#service" class="btn-more">
+            서비스 둘러보기
+        </a>
+
+    </div>
+</section>
+
+<!-- 브랜드 스토리 -->
+
+<section class="brand-story">
+
+    <!-- 사진 콜라주 -->
+
+    <div class="story-gallery">
+
+        <img src="../bloommoment/img/story1.jpg" class="photo p1" alt="">
+        <img src="../bloommoment/img/story2.jpg" class="photo p2" alt="">
+        <img src="../bloommoment/img/story3.jpg" class="photo p3" alt="">
+        <img src="../bloommoment/img/story4.jpg" class="photo p4" alt="">
+        <img src="../bloommoment/img/story5.jpg" class="photo p5" alt="">
+        <img src="../bloommoment/img/story6.jpg" class="photo p6" alt="">
+        <img src="../bloommoment/img/story7.jpg" class="photo p7" alt="">
+
+    </div>
+
+
+    <!-- 브랜드 문구 -->
+
+    <div class="story-letter">
+
+        <img src="../bloommoment/img/0.png" alt="">
+
+        <div class="story-overlay">
+
+            <span>EVERY MOMENT BLOOMS</span>
 
             <h2>
-                당신의 사랑이 늦지 않게
+                Flowers Fade,<br>
+                Memories Remain.
             </h2>
 
-<p class="brand-sub">
-    Bloom Moment는
-</p>
+            <p>
+                꽃은 시간이 지나 시들지만,<br>
+                그날의 설렘과 전하고 싶었던 마음은 오래도록 기억됩니다.<br>
 
-<p class="brand-desc">
-    기념일을 챙기고 싶지만 바쁜 일상 속에서 놓치기 쉬운 사람들을 위해 만들어졌습니다.
-    기념일 알림부터 맞춤 꽃 추천까지, 소중한 사람을 위한 순간을 더 쉽고
-    특별하게 준비할 수 있도록 함께합니다.
-</p>
-
-<p class="brand-message">
-    꽃이 필요한 모든 순간,<br>
-    Bloom Moment가 당신의 마음을 대신 전합니다.
-</p>
-
-            <a href="#service" class="btn-more">
-                서비스보기
-            </a>
+                Bloom Moment는
+                소중한 사람에게 전하고 싶은 마음을
+                꽃으로 기록합니다.
+            </p>
 
         </div>
 
@@ -663,7 +700,7 @@
         <div class="gallery-overlay">
             <span class="material-symbols-outlined gallery-icon">
             ⌕
-        </span>
+            </span>
             <p>자세히 보기</p>
         </div>
 
@@ -982,7 +1019,7 @@ dropdownItems.forEach(item => {
             "예산과 원하는 꽃, 전달하고 싶은 마음을 알려주세요.";
         }
 
-        // ⭐ 선택하면 자동으로 닫기
+        // 선택하면 자동으로 닫기
         dropdown.classList.remove("is-open");
 
     });
@@ -1019,8 +1056,6 @@ closeBtn.addEventListener("click",()=>{
     modal.classList.remove("show");
 
 });
-
-
 
 form.addEventListener("submit",(e)=>{
 
@@ -1067,7 +1102,6 @@ const modalDesc = document.getElementById("modalDesc");
 const galleryClose = document.querySelector(".gallery-close");
 const galleryTrack = document.querySelector(".gallery-track");
 
-
 // 사진 클릭
 galleryImages.forEach(img => {
 
@@ -1091,10 +1125,8 @@ galleryImages.forEach(img => {
 
 });
 
-
 // X 버튼
 galleryClose.addEventListener("click", closeGallery);
-
 
 // 바깥 클릭
 galleryModal.addEventListener("click", (e) => {
@@ -1107,7 +1139,6 @@ galleryModal.addEventListener("click", (e) => {
 
 });
 
-
 // ESC
 document.addEventListener("keydown",(e)=>{
 
@@ -1118,7 +1149,6 @@ document.addEventListener("keydown",(e)=>{
     }
 
 });
-
 
 // 닫기 함수
 function closeGallery(){
