@@ -2376,6 +2376,108 @@ header.scrolled ~ .hero .hero-pagination span.active{
     transform:rotate(90deg);
 }
 
+/* 돋보기 */
+
+/* =========================
+Gallery Hover
+========================= */
+
+.gallery-thumb{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    cursor:pointer;
+}
+
+.gallery-thumb img{
+
+    width:100%;
+    height:380px;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.45s ease;
+}
+
+/* 사진 확대 */
+
+.gallery-thumb:hover img{
+
+    transform:scale(1.05);
+}
+
+/* 오버레이 */
+
+.gallery-overlay{
+
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    gap:6px;
+
+    background:rgba(0,0,0,.35);
+
+    opacity:0;
+
+    transition:.35s ease;
+}
+
+/* Hover */
+
+.gallery-thumb:hover .gallery-overlay{
+
+    opacity:1;
+}
+
+/* 아이콘 */
+
+.gallery-icon{
+
+    font-size:34px;
+
+    color:#fff;
+
+    transform:translateY(10px);
+
+    transition:.35s ease;
+}
+
+/* 텍스트 */
+
+.gallery-overlay p{
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:500;
+
+    letter-spacing:.05em;
+
+    transform:translateY(10px);
+
+    transition:.35s ease;
+}
+
+/* 아이콘, 텍스트 등장 */
+
+.gallery-thumb:hover .gallery-icon,
+.gallery-thumb:hover .gallery-overlay p{
+
+    transform:translateY(0);
+}
+
 /* 애니메이션 */
 @keyframes slide{
     from{
@@ -2486,6 +2588,56 @@ header.scrolled ~ .hero .hero-pagination span.active{
     width:120px;
 }
 
+@media (max-width:1280px){
+
+    .gallery{
+        padding:100px 0;
+    }
+
+    .gallery-track{
+        gap:20px;
+        animation-duration:30s;
+    }
+
+    .gallery-item{
+        width:320px;
+        height:365px;
+    }
+
+    .gallery-thumb img{
+        height:315px;
+    }
+
+    .gallery-item.down{
+        padding-top:40px;
+    }
+
+    /* 모달 */
+
+    .gallery-modal-box{
+        max-width:420px;
+    }
+
+    .gallery-modal-img{
+        height:400px;
+    }
+
+    .gallery-modal-info{
+        padding:24px;
+    }
+
+    .gallery-modal-info h3{
+        font-size:24px;
+    }
+
+    .gallery-close{
+        width:38px;
+        height:38px;
+        font-size:24px;
+    }
+
+}
+
 /* =========================
 모바일 (768)
 ========================= */
@@ -2582,6 +2734,137 @@ header.scrolled ~ .hero .hero-pagination span.active{
 
     font-size:22px;
 }
+
+    .gallery{
+        padding:80px 0;
+    }
+
+    .gallery-track{
+        gap:16px;
+        animation-duration:30s;
+    }
+
+    .gallery-item{
+        width:220px;
+        height:260px;
+    }
+
+    .gallery-thumb{
+        border-radius:16px;
+    }
+
+    .gallery-thumb img{
+        height:220px;
+        border-radius:16px;
+    }
+
+    .gallery-item.down{
+        padding-top:28px;
+    }
+
+    .gallery-overlay{
+
+        opacity:1;
+
+        justify-content:flex-end;
+
+        gap:4px;
+
+        padding-bottom:18px;
+
+        background:linear-gradient(
+            to top,
+            rgba(0,0,0,.45),
+            rgba(0,0,0,0)
+        );
+    }
+
+    .gallery-icon{
+
+        display:none;
+    }
+
+    .gallery-overlay p{
+
+        transform:none;
+
+        font-size:13px;
+
+        font-weight:500;
+
+        letter-spacing:.02em;
+    }
+
+    /* 확대 제거 */
+
+    .gallery-thumb:hover img{
+
+        transform:none;
+    }
+
+    /* 모달 */
+
+    .gallery-modal{
+        padding:16px;
+    }
+
+    .gallery-modal-box{
+
+        max-width:360px;
+
+        border-radius:18px;
+    }
+
+    .gallery-modal-img{
+
+        height:320px;
+    }
+
+    .gallery-modal-info{
+
+        padding:20px;
+    }
+
+    .gallery-modal-info h3{
+
+        font-size:21px;
+    }
+
+    .gallery-modal-info>#modalShop{
+
+        font-size:13px;
+
+        margin-bottom:14px;
+    }
+
+    .modal-tag{
+
+        gap:8px;
+
+        margin-bottom:16px;
+    }
+
+    .modal-tag span{
+
+        font-size:12px;
+
+        padding:6px 12px;
+    }
+
+    .gallery-modal-info p{
+
+        font-size:14px;
+
+        line-height:1.7;
+    }
+
+    .gallery-close{
+
+        width:34px;
+        height:34px;
+
+        font-size:22px;
+    }
 
 }
 
