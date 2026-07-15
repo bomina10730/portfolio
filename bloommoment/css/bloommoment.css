@@ -871,8 +871,8 @@ header.scrolled ~ .hero .hero-pagination span.active{
     position:relative;
 
     width:100%;
-    max-width:1050px;
-    height:720px;
+    max-width:1600px;
+    height:1200px;
 
     margin:0 auto 180px;
 
@@ -884,109 +884,134 @@ header.scrolled ~ .hero .hero-pagination span.active{
 
     object-fit:cover;
 
-    box-shadow:0 20px 40px rgba(0,0,0,.08);
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
 
-    transition:.4s;
+    transition:.45s ease;
+
+    opacity:0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.6);
+
+    left:50%;
+    top:50%;
+
+    transition:
+        transform 1.2s cubic-bezier(.22,1,.36,1),
+        opacity .8s;
+
 }
 
 .story-gallery img:hover{
 
-    transform:translateY(-12px);
+    transform:translateY(-12px) scale(1.03);
+
+    box-shadow:0 30px 60px rgba(0,0,0,.12);
 
 }
 
+/* 스크롤 */
 
-/* 각각 위치 */
+.story-gallery.show .p1{
 
-.p1{
+    opacity:1;
+    transform:none;
 
-    width:220px;
-    height:180px;
+    left:170px;
+    top:40px;
 
-    left:120px;
+}
+
+.story-gallery.show .p2{
+
+    opacity:1;
+    transform:none;
+
+    right:250px;
     top:0;
 
 }
 
+/* 나머지도 동일 */
+
+
+/* 좌측 위 */
+.p1{
+
+    width:380px;
+    height:300px;
+
+    left:170px;
+    top:40px;
+
+}
+
+/* 우측 위 */
 .p2{
 
-    width:200px;
-    height:250px;
+    width:340px;
+    height:430px;
 
-    right:170px;
-    top:-30px;
+    right:250px;
+    top:0;
 
 }
 
+/* 우측 중간 */
 .p3{
 
-    width:170px;
-    height:230px;
+    width:300px;
+    height:400px;
 
-    right:70px;
-    top:170px;
-
-}
-
-.p4{
-
-    width:180px;
-    height:250px;
-
-    left:20px;
-    top:250px;
-
-}
-
-.p5{
-
-    width:240px;
-    height:180px;
-
-    left:380px;
+    right:90px;
     top:300px;
 
 }
 
+/* 좌측 중간 */
+.p4{
+
+    width:320px;
+    height:450px;
+
+    left:40px;
+    top:470px;
+
+}
+
+/* 가운데 메인 */
+.p5{
+
+    width:500px;
+    height:340px;
+
+    left:520px;
+    top:520px;
+
+    z-index:3;
+
+}
+
+/* 우측 아래 */
 .p6{
 
-    width:250px;
-    height:170px;
+    width:420px;
+    height:290px;
 
-    right:110px;
-    bottom:0;
-
-}
-
-
-/*==========================
-Letter
-==========================*/
-
-.story-letter{
-
-    position:relative;
-
-    width:100%;
-    height:700px;
-
-    overflow:hidden;
+    right:160px;
+    bottom:20px;
 
 }
 
+/* 좌측 아래 */
+.p7{
 
-.story-letter img{
+    width:280px;
+    height:360px;
 
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    filter:
-
-        brightness(.95)
-        saturate(.85)
-        blur(1.2px);
+    left:240px;
+    bottom:50px;
 
 }
 
@@ -1090,28 +1115,94 @@ Letter
 /* =========================
 테블릿
 ========================= */
+
 @media (max-width:1280px){
 
 .story-gallery{
 
-    transform:scale(.9);
+    max-width:1100px;
+    height:900px;
 
-    margin-bottom:120px;
-
-}
-
-.story-overlay h2{
-
-    font-size:58px;
+    margin:0 auto 140px;
 
 }
 
-.story-overlay p{
+/* 좌측 위 */
+.p1{
 
-    font-size:17px;
+    width:300px;
+    height:235px;
+
+    left:120px;
+    top:30px;
 
 }
 
+/* 우측 위 */
+.p2{
+
+    width:270px;
+    height:340px;
+
+    right:170px;
+    top:0;
+
+}
+
+/* 우측 중간 */
+.p3{
+
+    width:240px;
+    height:320px;
+
+    right:60px;
+    top:240px;
+
+}
+
+/* 좌측 중간 */
+.p4{
+
+    width:260px;
+    height:360px;
+
+    left:20px;
+    top:360px;
+
+}
+
+/* 가운데 */
+.p5{
+
+    width:390px;
+    height:270px;
+
+    left:360px;
+    top:400px;
+
+}
+
+/* 우측 아래 */
+.p6{
+
+    width:320px;
+    height:220px;
+
+    right:100px;
+    bottom:20px;
+
+}
+
+/* 좌측 아래 */
+.p7{
+
+    width:220px;
+    height:280px;
+
+    left:170px;
+    bottom:30px;
+
+}
 }
 
 /* =========================
@@ -1122,63 +1213,89 @@ Letter
 
 .story-gallery{
 
-    display:grid;
+    max-width:100%;
+    height:640px;
 
-    grid-template-columns:repeat(2,1fr);
-
-    gap:18px;
-
-    height:auto;
-
-    max-width:360px;
-
-    margin:0 auto 80px;
+    margin:0 auto 100px;
 
 }
 
-.story-gallery img{
+/* 좌측 위 */
+.p1{
 
-    position:static;
+    width:180px;
+    height:140px;
 
-    width:100%;
-    height:220px;
-
-}
-
-.story-letter{
-
-    height:520px;
+    left:30px;
+    top:10px;
 
 }
 
-.story-overlay{
+/* 우측 위 */
+.p2{
 
-    width:90%;
+    width:160px;
+    height:210px;
 
-}
-
-.story-overlay span{
-
-    font-size:11px;
-
-}
-
-.story-overlay h2{
-
-    font-size:38px;
-
-    margin-bottom:20px;
+    right:35px;
+    top:0;
 
 }
 
-.story-overlay p{
+/* 우측 중간 */
+.p3{
 
-    font-size:15px;
+    width:140px;
+    height:190px;
 
-    line-height:1.9;
+    right:0;
+    top:150px;
 
 }
 
+/* 좌측 중간 */
+.p4{
+
+    width:150px;
+    height:210px;
+
+    left:0;
+    top:250px;
+
+}
+
+/* 가운데 */
+.p5{
+
+    width:240px;
+    height:165px;
+
+    left:150px;
+    top:300px;
+
+}
+
+/* 우측 아래 */
+.p6{
+
+    width:200px;
+    height:140px;
+
+    right:20px;
+    bottom:10px;
+
+}
+
+/* 좌측 아래 */
+.p7{
+
+    width:130px;
+    height:170px;
+
+    left:80px;
+    bottom:20px;
+
+}
 }
 
 /* =========================
