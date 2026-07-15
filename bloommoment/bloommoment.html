@@ -158,13 +158,13 @@
 
     <div class="story-gallery">
 
-        <img src="../bloommoment/img/story1.jpg" class="photo p1" alt="">
-        <img src="../bloommoment/img/story2.jpg" class="photo p2" alt="">
-        <img src="../bloommoment/img/story3.jpg" class="photo p3" alt="">
+        <img src="../bloommoment/img/f4.jpg" class="photo p1" alt="">
+        <img src="../bloommoment/img/f2.png" class="photo p2" alt="">
+        <img src="../bloommoment/img/f5.jpeg" class="photo p3" alt="">
         <img src="../bloommoment/img/story4.jpg" class="photo p4" alt="">
-        <img src="../bloommoment/img/story5.jpg" class="photo p5" alt="">
-        <img src="../bloommoment/img/story6.jpg" class="photo p6" alt="">
-        <img src="../bloommoment/img/story7.jpg" class="photo p7" alt="">
+        <img src="../bloommoment/img/f1.png" class="photo p5" alt="">
+        <img src="../bloommoment/img/f3.png" class="photo p6" alt="">
+        <img src="../bloommoment/img/f6.jpg" class="photo p7" alt="">
 
     </div>
 
@@ -951,6 +951,28 @@ mobileLinks.forEach(link=>{
 
 });
 
+// 팡 터지는 효과
+
+const story = document.querySelector(".story-gallery");
+
+const observer = new IntersectionObserver((entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            story.classList.add("show");
+
+        }
+
+    });
+
+},{
+    threshold:.35
+});
+
+observer.observe(story);
+
 // 효과
 
 const processItems = document.querySelectorAll(".process-item");
@@ -1162,6 +1184,7 @@ function closeGallery(){
 }
 
 });
+
 </script>
 
 </body>
