@@ -942,6 +942,70 @@ mobileLinks.forEach(link=>{
 
 });
 
+// 스와이프
+
+const heroArea = document.querySelector(".hero");
+
+let startX = 0;
+let endX = 0;
+let isDragging = false;
+
+function nextSlide() {
+    clearInterval(slideTimer);
+    showSlide((current + 1) % slides.length);
+    startSlide();
+}
+
+function prevSlide() {
+    clearInterval(slideTimer);
+    showSlide((current - 1 + slides.length) % slides.length);
+    startSlide();
+}
+
+// 모바일
+heroArea.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+});
+
+heroArea.addEventListener("touchend", (e) => {
+    endX = e.changedTouches[0].clientX;
+
+    const distance = startX - endX;
+
+    if (Math.abs(distance) > 50) {
+        if (distance > 0) {
+            nextSlide();
+        } else {
+            prevSlide();
+        }
+    }
+});
+
+// PC 드래그
+heroArea.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startX = e.clientX;
+});
+
+window.addEventListener("mouseup", (e) => {
+
+    if (!isDragging) return;
+
+    isDragging = false;
+    endX = e.clientX;
+
+    const distance = startX - endX;
+
+    if (Math.abs(distance) > 50) {
+        if (distance > 0) {
+            nextSlide();
+        } else {
+            prevSlide();
+        }
+    }
+
+});
+
 // 팡 터지는 효과
 
 const story = document.querySelector(".story-gallery");
