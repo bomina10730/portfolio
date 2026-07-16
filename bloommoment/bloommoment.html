@@ -340,13 +340,25 @@
 </section>
 
 <!-- Order -->
+<!-- 주문제작 -->
+
 <section class="order" id="order">
+
+    <!-- 배경사진 -->
+    <img src="../bloommoment/img/111.png" alt="" class="order-bg">
+
+    <!-- 밝은 오버레이 -->
+    <div class="order-overlay"></div>
 
     <div class="order-inner">
 
-        <div class="order-title">
+        <!-- 왼쪽 -->
+        <div class="order-info">
 
-            <h2>Bloom Moment와 함께하기</h2>
+            <h2>
+                Bloom Moment와<br>
+                함께하기
+            </h2>
 
             <div class="title-line"></div>
 
@@ -357,48 +369,83 @@
 
         </div>
 
-        <div class="order-wrap">
+        <!-- 오른쪽 -->
+        <div class="order-form">
 
-            <!-- 이미지 -->
-            <div class="order-img">
-                <img src="../bloommoment/img/flower4.png" alt="주문제작 꽃다발">
-            </div>
+            <h3>주문 문의</h3>
 
-            <!-- 문의폼 -->
-            <div class="order-form">
+            <form>
 
-                <!-- <h3>기념일 리마인드</h3> -->
+                <div class="form-row">
 
-                <form>
-                    <div class="form-row">
-                        <input type="text" placeholder="이름" required>
-                        <input type="tel" placeholder="연락처" required>
-                    </div>
+                    <input
+                        type="text"
+                        placeholder="이름"
+                        required
+                    >
 
-                    <div class="dropdown">
+                    <input
+                        type="tel"
+                        placeholder="연락처"
+                        required
+                    >
 
-                        <button type="button" class="dropdown-btn">
-                            <span>문의 유형</span>
-                        </button>
+                </div>
 
-                        <ul class="dropdown-list">
-                            <li data-value="">기념일 리마인드</li>
-                            <li data-value="맞춤 꽃 추천">맞춤 꽃 추천</li>
-                            <li data-value="주문제작 꽃다발">주문제작 꽃다발</li>
-                        </ul>
+<!-- 문의유형 -->
 
-                        <input type="hidden" name="type">
-                    </div>
-                    <input type="text" placeholder="원하는 분위기 또는 컬러" required>
-                    <textarea id="message" placeholder="문의내용" required></textarea>
-                    <button type="submit" class="btn-submit">
-                    문의 보내기
-                    </button>
-                </form>
+<div class="dropdown">
 
-            </div>
+    <button
+        type="button"
+        class="dropdown-btn">
+
+        <span>문의 유형을 선택해주세요</span>
+
+    </button>
+
+    <ul class="dropdown-list">
+
+        <li data-value="기념일 리마인드">
+            기념일 리마인드
+        </li>
+
+        <li data-value="맞춤 꽃 추천">
+            맞춤 꽃 추천
+        </li>
+
+        <li data-value="주문제작 꽃다발">
+            주문제작 꽃다발
+        </li>
+
+    </ul>
+
+    <input
+        type="hidden"
+        name="type">
+
+</div>
+
+<input
+    type="text"
+    placeholder="원하는 꽃 종류 또는 분위기">
+
+<textarea
+    id="message"
+    placeholder="문의 내용을 입력해주세요"
+    required></textarea>
+
+<button
+    type="submit"
+    class="btn-submit">
+
+    문의 보내기
+
+</button>
+            </form>
         </div>
     </div>
+
 </section>
 
 <section class="gallery" id="gallery">
@@ -1044,7 +1091,7 @@ const processObserver = new IntersectionObserver((entries) => {
 
                 entry.target.classList.add("show");
 
-            }, index * 500);   // ← 시간차
+            }, index * 400);   // ← 시간차
 
             processObserver.unobserve(entry.target);
 
@@ -1064,49 +1111,46 @@ processItems.forEach(item => {
 
 const dropdown = document.querySelector(".dropdown");
 const dropdownBtn = document.querySelector(".dropdown-btn");
-const dropdownList = document.querySelector(".dropdown-list");
 const dropdownItems = document.querySelectorAll(".dropdown-list li");
 const hiddenInput = document.querySelector('input[name="type"]');
 const message = document.getElementById("message");
 
-dropdownBtn.addEventListener("click", () => {
+const placeholders = {
+    "기념일 리마인드": "등록하고 싶은 기념일과 날짜를 알려주세요.",
+    "맞춤 꽃 추천": "받는 분의 취향과 원하는 분위기를 알려주세요.",
+    "주문제작 꽃다발": "예산과 원하는 꽃, 전달하고 싶은 마음을 알려주세요."
+};
+
+dropdownBtn.addEventListener("click", (e) => {
+
+    e.stopPropagation();
     dropdown.classList.toggle("is-open");
+
 });
 
 dropdownItems.forEach(item => {
+
     item.addEventListener("click", () => {
 
-        const text = item.textContent;
+        const value = item.dataset.value;
 
-        dropdownBtn.querySelector("span").textContent = text;
-        hiddenInput.value = text;
+        dropdownBtn.querySelector("span").textContent = value;
+        hiddenInput.value = value;
 
-        if(text === "기념일 리마인드"){
-            message.placeholder =
-            "등록하고 싶은 기념일과 날짜를 알려주세요.";
-        }
+        message.placeholder = placeholders[value];
 
-        else if(text === "맞춤 꽃 추천"){
-            message.placeholder =
-            "받는 분의 취향, 분위기를 알려주세요.";
-        }
-
-        else if(text === "주문제작 꽃다발"){
-            message.placeholder =
-            "예산과 원하는 꽃, 전달하고 싶은 마음을 알려주세요.";
-        }
-
-        // 선택하면 자동으로 닫기
         dropdown.classList.remove("is-open");
 
     });
+
 });
 
-document.addEventListener("click",(e)=>{
+document.addEventListener("click", (e) => {
 
-    if(!dropdown.contains(e.target)){
+    if (!dropdown.contains(e.target)) {
 
         dropdown.classList.remove("is-open");
+
     }
 
 });
