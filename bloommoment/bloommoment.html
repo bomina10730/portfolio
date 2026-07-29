@@ -807,16 +807,16 @@
                 <div class="info-item">
                     <span>ADDRESS</span>
                     <p>
-                        김포시 대곶면 741 B5, 522호<br>
-                        (경동미르렌시티)
+                        Seoul, South Korea<br>
+                        Bloom Moment Studio
                     </p>
                 </div>
 
                 <div class="info-item">
                     <span>CONTACT</span>
                     <p>
-                        031.992.3552<br>
-                        wmper@wmper.com
+                        02.1234.5678<br>
+                        hello@bloommoment.kr
                     </p>
                 </div>
 
@@ -849,6 +849,127 @@
             <button id="closeModal">확인</button>
         </div>
     </div>
+
+    <!-- =========================
+챗봇
+========================= -->
+
+<div class="chatbot">
+
+    <!-- 플로팅 버튼 -->
+
+<button class="chat-toggle">
+
+    <span class="chat-icon">❀</span>
+
+    <span class="close-icon">✕</span>
+
+</button>
+
+<!-- TOP -->
+    <button class="top-btn">
+        ↑
+    </button>
+
+    <!-- 채팅창 -->
+
+    <div class="chat-intro">
+
+    <div class="intro-inner">
+
+        <h3>
+            오늘은 어떤 순간을 준비하고 계신가요?
+        </h3>
+
+        <div class="intro-image">
+
+            <!-- 이미지 -->
+            <img src="../bloommoment/img/122249043.png" alt="Bloom AI">
+
+        </div>
+
+        <div class="intro-desc">
+
+            이곳은 Bloom Moment의 AI 챗봇 채팅창이에요.<br>
+            기념일 등록, 맞춤 꽃 추천, 꽃다발 주문까지<br>
+            대화로 편하게 도와드려요.<br>
+            궁금한 점을 편하게 물어보세요!
+
+        </div>
+
+        <div class="intro-time">
+
+            운영시간 | 10:00 - 18:00
+
+        </div>
+
+        <button class="intro-start">
+
+            💬 대화하기
+
+        </button>
+
+    </div>
+
+</div>
+
+    <div class="chat-window">
+
+        <div class="chat-header">
+
+            <div class="chat-title">
+
+                ❀ Bloom Moment | 블룸모먼트
+
+            </div>
+
+            <button class="chat-close">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="chat-body">
+
+            <div class="bot-message small">
+                반갑습니다! 블룸 모먼트입니다 😊
+            </div>
+
+            <div class="bot-message">
+                오늘은 어떤 순간을 준비하고 계신가요?<br><br>
+
+                궁금한 내용을 입력하시거나<br>
+                아래 메뉴를 선택해 주세요.
+            </div>
+
+            <div class="quick-menu">
+
+                <button>🌼 꽃 추천받기</button>
+                <button>📅 기념일 등록하기</button>
+                <button>💐 주문 제작 문의하기</button>
+
+            </div>
+
+        </div>
+
+        <div class="chat-input">
+
+            <input
+                type="text"
+                placeholder="메시지를 입력해주세요."
+            >
+
+            <button>
+
+                ➤
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script>
 
@@ -1281,6 +1402,93 @@ function closeGallery(){
     document.body.style.overflow = "";
 
 }
+
+});
+
+// =========================
+// 챗봇
+// =========================
+
+const chatbot = document.querySelector(".chatbot");
+const chatToggle = document.querySelector(".chat-toggle");
+const chatWindow = document.querySelector(".chat-window");
+const chatIntro = document.querySelector(".chat-intro");
+const introStart = document.querySelector(".intro-start");
+const topBtn = document.querySelector(".top-btn");
+
+// 꽃 버튼 (열기 / 닫기)
+chatToggle.addEventListener("click", () => {
+
+    if (chatbot.classList.contains("open")) {
+
+        // 닫기
+        chatbot.classList.remove("open");
+        chatToggle.classList.remove("active");
+
+        chatIntro.style.display = "none";
+        chatWindow.style.display = "none";
+
+    } else {
+
+        // 열기 (인트로 먼저)
+        chatbot.classList.add("open");
+        chatToggle.classList.add("active");
+
+        chatIntro.style.display = "block";
+        chatWindow.style.display = "none";
+
+    }
+
+});
+
+// 대화하기
+introStart.addEventListener("click", () => {
+
+    chatIntro.style.display = "none";
+    chatWindow.style.display = "flex";
+
+});
+
+
+// =========================
+// TOP 버튼
+// =========================
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 2000) {
+
+        topBtn.classList.add("show");
+
+    } else {
+
+        topBtn.classList.remove("show");
+
+    }
+
+});
+
+topBtn.addEventListener("click", () => {
+
+    window.scrollTo({
+
+        top: 0,
+        behavior: "smooth"
+
+    });
+
+});
+
+// 모바일 닫기 버튼
+const mobileChatClose = document.querySelector(".chat-close");
+
+mobileChatClose.addEventListener("click", () => {
+
+    chatbot.classList.remove("open");
+    chatToggle.classList.remove("active");
+
+    chatIntro.style.display = "block";
+    chatWindow.style.display = "none";
 
 });
 
